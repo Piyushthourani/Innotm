@@ -10,8 +10,23 @@ import { FormsModule } from '@angular/forms';
 })
 export class SignupForm {
   signupModel: any ={};
+  loginModel: any = {};
 
-  onSubmit() {
-    alert('Registered Succesfully!!');
+  showLoginForm: boolean = false;
+
+
+  onRegisterSubmit() {
+    // Logic to register the user goes here...
+
+    // Then show the login form
+    this.showLoginForm = true;
+    alert('Registered Successfully!! Please log in.');
+  }
+
+  onLoginSubmit() {
+    // Logic to log in the user goes here...
+
+    // For now, just alerting the user
+    alert('Logged In Successfully!!');
   }
 }

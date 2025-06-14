@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card p-4 shadow-lg" style="width: 100%; max-width: 450px;">
-      <h3 class="text-center mb-4">Sign Up</h3>
-      <form #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onSubmit()">
+      <h3 class="text-center mb-4">{{ showLoginForm ? 'Login' : 'Sign Up' }}</h3>
+      <form *ngIf="!showLoginForm" #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onRegisterSubmit()">
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
@@ -46,6 +46,32 @@
           <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
-    </div>
+    
+
+
+  <!-- Login Form  -->
+
+  
+    <form *ngIf="showLoginForm" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onLoginSubmit()">
+      <!-- Phone Number -->
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" [(ngModel)]="loginModel.Phone" name="Phone" #phone="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && phone.invalid}" placeholder="Enter phone number" required>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="loginModel.Password" name="Password" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid}" placeholder="Enter password" required>
+      </div>
+
+      <!-- Login Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
   </div>
+</div>
+
+
 

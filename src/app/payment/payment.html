@@ -1,0 +1,50 @@
+
+<div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <h3 class="mb-4 text-primary text-center">Send Money</h3>
+
+    <form (ngSubmit)="sendMoney()" #paymentForm="ngForm">
+      <!-- Receiver Phone Number -->
+      <div class="mb-3">
+        <label for="receiverPhone" class="form-label">Receiver Phone Number</label>
+        <input
+          type="text"
+          id="receiverPhone"
+          name="receiverPhone"
+          class="form-control"
+          required
+          pattern="^[0-9]{10}$"
+          [(ngModel)]="receiverPhone"
+          #phoneRef="ngModel"
+        />
+        <div *ngIf="phoneRef.invalid && phoneRef.touched" class="text-danger">
+          Enter a valid 10-digit phone number.
+        </div>
+      </div>
+
+      <!-- Amount -->
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          class="form-control"
+          required
+          min="1"
+          [(ngModel)]="amount"
+          #amountRef="ngModel"
+        />
+        <div *ngIf="amountRef.invalid && amountRef.touched" class="text-danger">
+          Enter a valid amount.
+        </div>
+      </div>
+
+      <!-- Send Button -->
+      <button class="btn btn-primary w-100" [disabled]="paymentForm.invalid">
+        Send Money
+      </button>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <h3 class="mb-4 text-primary text-center">Add Money to Your Wallet</h3>
+
+    <form (ngSubmit)="addMoney()" #addMoneyForm="ngForm">
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          class="form-control"
+          required
+          min="1"
+          [(ngModel)]="amount"
+          #amountRef="ngModel"
+        />
+        <div *ngIf="amountRef.invalid && amountRef.touched" class="text-danger">
+          Please enter a valid amount.
+        </div>
+      </div>
+
+      <button class="btn btn-success w-100" [disabled]="addMoneyForm.invalid">
+        Add Money
+      </button>
+    </form>
+  </div>
+</div>
+

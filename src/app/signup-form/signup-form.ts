@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -9,10 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './signup-form.css'
 })
 export class SignupForm {
+
+  constructor(private router: Router) {}
+  
   signupModel: any ={};
   loginModel: any = {};
 
-  showLoginForm: boolean = false;
+  showLoginForm: boolean = true;
 
 
   onRegisterSubmit() {
@@ -28,5 +32,6 @@ export class SignupForm {
 
     // For now, just alerting the user
     alert('Logged In Successfully!!');
+    this.router.navigate(['/dashboard']);
   }
 }

@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h3 class="text-center text-primary mb-4">Transaction History</h3>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="transactions.length > 0; else noData">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Amount (₹)</th>
+          <th>To/From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ txn.date | date:'medium' }}</td>
+          <td [ngClass]="{'text-success': txn.type === 'credit', 'text-danger': txn.type === 'debit'}">
+            {{ txn.type | titlecase }}
+          </td>
+          <td>{{ txn.amount }}</td>
+          <td>{{ txn.counterparty }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noData>
+      <p class="text-center text-muted">No transactions found.</p>
+    </ng-template>
+  </div>
+</div>
+

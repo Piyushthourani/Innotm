@@ -2,4 +2,15 @@
 <!-- <app-signup-form /> -->
 <!-- <app-add-money /> -->
 
-<router-outlet />
+<!-- app.component.html -->
+<div class="d-flex">
+  
+  <app-sidebar *ngIf="showSidebar()" />
+
+  
+  <div class="flex-grow-1 p-4" style="min-height: 100vh;">
+    <router-outlet />
+  </div>
+</div>
+
+

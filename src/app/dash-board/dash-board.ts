@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './dash-board.html',
   styleUrl: './dash-board.css'
 })
-export class DashBoard {
+export class DashBoard{
+  
 
   constructor(private router: Router) {}
+
+  
 
   addMoney() {
     this.router.navigate(['/add-money']);

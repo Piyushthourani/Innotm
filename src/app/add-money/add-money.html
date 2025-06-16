@@ -12,7 +12,7 @@
           class="form-control"
           required
           min="1"
-          [(ngModel)]="amount"
+          [(ngModel)]="addMoneyModel.amount"
           #amountRef="ngModel"
         />
         <div *ngIf="amountRef.invalid && amountRef.touched" class="text-danger">

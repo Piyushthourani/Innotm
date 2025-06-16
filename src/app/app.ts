@@ -17,6 +17,6 @@ export class App {
 
   showSidebar(): boolean {
     // Hide sidebar on login or signup pages
-    return ![ '/login', '/signup'].includes(this.router.url);
+    return !['', '/login', '/signup'].includes(this.router.url);
   }
 }

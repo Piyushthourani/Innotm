@@ -8,7 +8,7 @@ import { TransactionHistory } from './transaction-history/transaction-history';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/signup', pathMatch: 'full' },
   { path: 'login', component: SignupForm },
   { path: 'signup', component: SignupForm },
   { path: 'add-money', component: AddMoney },

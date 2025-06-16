@@ -20,6 +20,9 @@ export class Myservice {
   addMoney(money: any) {
     return this.http.post<any>(this.masterapiurl + "/api/Wallet/add", money);
   }
+  getBalance(phoneNumber: string) {
+    return this.http.get<any>(this.masterapiurl + "/api/Users/balance/" + phoneNumber);
+  }
 }
 
 export class SignupInfo{

@@ -43,4 +43,7 @@ export class SignupForm {
       this.router.navigate(['/dashboard']);
     });
   }
+  switchMode() {
+    this.showLoginForm = !this.showLoginForm;
+  }
 }

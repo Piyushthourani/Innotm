@@ -2,6 +2,12 @@
   <div class="card p-4 shadow">
     <h3 class="text-center text-primary mb-4">Transaction History</h3>
 
+    <div class="text-end mb-3">
+      <button class="btn btn-danger btn-sm" (click)="deleteAllTransactions()">
+        🗑️ Delete All Transactions
+      </button>
+    </div>
+
     <table class="table table-bordered table-striped text-center" *ngIf="transactions.length > 0; else noData">
       <thead class="table-dark">
         <tr>
@@ -14,6 +20,7 @@
           <th>Transaction Date</th>
           <th>Initial balance</th>
           <th>Transfer Amount</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +34,7 @@
           <td>{{ txn.transactionDate }}</td>
           <td>{{ txn.initialAmount }}</td>
           <td>{{ txn.transferAmount }}</td>
+          <td><button class="btn btn-sm btn-danger" (click)="deleteTransaction(txn.transactionId)">Delete</button></td>
         </tr>
       </tbody>
     </table>

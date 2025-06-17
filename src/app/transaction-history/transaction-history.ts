@@ -12,6 +12,7 @@ import { Myservice, TransactionDetails } from '../myservice';
 export class TransactionHistory implements OnInit {
     transactions = new Array<TransactionDetails>();
     userNumber: any;
+    
 
     constructor(private myservice: Myservice) {}
 
@@ -25,6 +26,20 @@ export class TransactionHistory implements OnInit {
       this.transactions = data.result;
       console.log(data.response);
       console.log(data.result);
+    });
+  }
+
+  deleteTransaction(transactionId: number) {
+    this.myservice.deleteTransactionById(transactionId).subscribe(data => {
+      console.log(data.response);
+      this.fetchTransactionHistory(); // Refresh the transaction history after deletion
+    });
+  }
+
+  deleteAllTransactions() {
+    this.myservice.deleteAllTransactions(this.userNumber).subscribe(data => {
+      console.log(data.response);
+      this.fetchTransactionHistory(); // Refresh the transaction history after deletion
     });
   }
 }

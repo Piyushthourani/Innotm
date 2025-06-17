@@ -34,6 +34,14 @@ export class Myservice {
   getUserList():Observable<any> {
     return this.http.get<any>(this.masterapiurl + "/api/Users/basic-list");
   }
+
+  deleteTransactionById(transactionId: number): Observable<any> {
+    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/DeleteTransectionById?tid=" + transactionId);
+  }
+
+  deleteAllTransactions(phoneNumber: string): Observable<any> {
+    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/history?phoneNumber=" + phoneNumber);
+  }
 }
 
 export class SignupInfo{
@@ -55,7 +63,7 @@ export class AddMoneyInfo {
 }
 
 export class TransactionDetails {
-  transactionId: number | undefined;
+  transactionId: any;
   userId: number | undefined;
   receiverId: number | undefined;
   receiverName: string | undefined;

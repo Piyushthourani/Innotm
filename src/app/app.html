@@ -3,9 +3,10 @@
 <!-- <app-add-money /> -->
 
 <!-- app.component.html -->
-<div class="d-flex">
+ <app-signup-form *ngIf="!isloggedIn" (loginEvent)="received($event)" />
+<div *ngIf="isloggedIn" class="d-flex">
   
-  <app-sidebar *ngIf="showSidebar()" />
+  <app-sidebar />
 
   
   <div class="flex-grow-1 p-4" style="min-height: 100vh;">

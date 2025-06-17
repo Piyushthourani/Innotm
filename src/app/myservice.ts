@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,17 @@ export class Myservice {
     return this.http.post<any>(this.masterapiurl + "/api/Wallet/add", money);
   }
   getBalance(phoneNumber: string) {
-    return this.http.get<any>(this.masterapiurl + "/api/Users/balance/" + phoneNumber);
+    return this.http.get<any>(this.masterapiurl + "/api/Users/balance?phoneNumber=" + phoneNumber);
+  }
+  getTransactionHistory(phoneNumber: string) {
+    return this.http.get<any>(this.masterapiurl + "/api/Transactions/history?phoneNumber=" + phoneNumber);
+  }
+  transferMoney(transferInfo: TransferMoneyInfo) {
+    return this.http.post<any>(this.masterapiurl + "/api/Transactions/pay", transferInfo);
+  }
+
+  getUserList():Observable<any> {
+    return this.http.get<any>(this.masterapiurl + "/api/Users/basic-list");
   }
 }
 
@@ -41,5 +52,29 @@ export class LoginInfo{
 export class AddMoneyInfo {
   phoneNumber: string | undefined;
   amount: number | undefined;
+}
+
+export class TransactionDetails {
+  transactionId: number | undefined;
+  userId: number | undefined;
+  receiverId: number | undefined;
+  receiverName: string | undefined;
+  receiverPhoneNumber: string | undefined;
+  transactionType: string | undefined;
+  transactionDate: Date | undefined;
+  initialAmount: number | undefined;
+  transferAmount: number | undefined;
+}
+
+export class TransferMoneyInfo {
+  senderPhoneNumber: string | undefined;
+  receiverPhoneNumber: string | undefined;
+  amount: number | undefined;
+}
+
+export class UserDetails {
+  userId: number | undefined;
+  username: string | undefined;
+  phoneNumber: string | undefined;
 }
 

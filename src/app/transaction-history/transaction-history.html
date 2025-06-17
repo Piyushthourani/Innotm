@@ -5,22 +5,28 @@
     <table class="table table-bordered table-striped text-center" *ngIf="transactions.length > 0; else noData">
       <thead class="table-dark">
         <tr>
-          <th>#</th>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Amount (₹)</th>
-          <th>To/From</th>
+          <th>Transaction ID</th>
+          <th>User ID</th>
+          <th>Receiver ID</th>
+          <th>Receiver name</th>
+          <th>Receiver number</th>
+          <th>Transaction Type</th>
+          <th>Transaction Date</th>
+          <th>Initial balance</th>
+          <th>Transfer Amount</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let txn of transactions; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ txn.date | date:'medium' }}</td>
-          <td [ngClass]="{'text-success': txn.type === 'credit', 'text-danger': txn.type === 'debit'}">
-            {{ txn.type | titlecase }}
-          </td>
-          <td>{{ txn.amount }}</td>
-          <td>{{ txn.counterparty }}</td>
+        <tr *ngFor="let txn of transactions">
+          <td>{{ txn.transactionId }}</td>
+          <td>{{ txn.userId }}</td>
+          <td>{{ txn.receiverId }}</td>
+          <td>{{ txn.receiverName }}</td>
+          <td>{{ txn.receiverPhoneNumber }}</td>
+          <td>{{ txn.transactionType | titlecase }}</td>
+          <td>{{ txn.transactionDate }}</td>
+          <td>{{ txn.initialAmount }}</td>
+          <td>{{ txn.transferAmount }}</td>
         </tr>
       </tbody>
     </table>

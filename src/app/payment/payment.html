@@ -1,11 +1,11 @@
-
+<!-- 
 <div class="container mt-5">
   <div class="card shadow-sm p-4">
     <h3 class="mb-4 text-primary text-center">Send Money</h3>
 
     <form (ngSubmit)="sendMoney()" #paymentForm="ngForm">
       <!-- Receiver Phone Number -->
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="receiverPhone" class="form-label">Receiver Phone Number</label>
         <input
           type="text"
@@ -14,7 +14,7 @@
           class="form-control"
           required
           pattern="^[0-9]{10}$"
-          [(ngModel)]="receiverPhone"
+          [(ngModel)]="transferMoneyModel.receiverPhoneNumber"
           #phoneRef="ngModel"
         />
         <div *ngIf="phoneRef.invalid && phoneRef.touched" class="text-danger">
@@ -23,7 +23,7 @@
       </div>
 
       <!-- Amount -->
-      <div class="mb-3">
+      <!-- <div class="mb-3">
         <label for="amount" class="form-label">Amount</label>
         <input
           type="number"
@@ -32,19 +32,35 @@
           class="form-control"
           required
           min="1"
-          [(ngModel)]="amount"
+          [(ngModel)]="transferMoneyModel.amount"
           #amountRef="ngModel"
         />
         <div *ngIf="amountRef.invalid && amountRef.touched" class="text-danger">
           Enter a valid amount.
         </div>
-      </div>
+      </div> -->
 
       <!-- Send Button -->
-      <button class="btn btn-primary w-100" [disabled]="paymentForm.invalid">
+      <!-- <button class="btn btn-primary w-100" [disabled]="paymentForm.invalid">
         Send Money
       </button>
     </form>
   </div>
-</div>
+</div> -->
+ 
 
+<div class="card-body">
+  <div class="input-group mb-3">
+ <label for="users" class="select-label">Select user:</label>
+ <select id="users" class="custom-select" [(ngModel)]="transferMoneyModel.receiverPhoneNumber">
+   <option value="" disabled selected>Select user</option>
+   <option *ngFor="let user of userlist" [value]="user.phoneNumber">{{ user.username }} | {{user.phoneNumber}}</option>
+ </select>
+ </div>
+ <div class="input-group mb-3">
+  <span class="input-group-text">Amount:</span>
+  <input type="number" class="form-control" [(ngModel)]="transferMoneyModel.amount" min="1" aria-label="Amount (to the nearest INR)" required>
+  <span class="input-group-text">.00</span>
+</div>
+<button type="submit" class="btn btn-primary" (click)="sendMoney()" [disabled]="!transferMoneyModel.receiverPhoneNumber || !transferMoneyModel.amount">Send Money</button>
+ </div>

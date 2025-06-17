@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginInfo, Myservice, SignupInfo } from '../myservice';
@@ -11,9 +11,16 @@ import { LoginInfo, Myservice, SignupInfo } from '../myservice';
   templateUrl: './signup-form.html',
   styleUrl: './signup-form.css'
 })
-export class SignupForm {
+export class SignupForm implements OnInit {
 
   constructor(private router: Router, private myservice: Myservice) {}
+  isloggedIn: boolean = false;
+  ngOnInit(): void {
+      this.isloggedIn = Boolean(sessionStorage.getItem("isloggedin"));
+      if(this.isloggedIn) {
+        this.router.navigate(['/dashboard']);
+      }
+  }
   
   signupModel= new SignupInfo();
   loginModel = new LoginInfo();
@@ -21,6 +28,7 @@ export class SignupForm {
   userlogin:any;
 
   showLoginForm: boolean = true;
+  @Output() loginEvent= new EventEmitter<string>();
 
 
   onRegisterSubmit() {
@@ -34,13 +42,26 @@ export class SignupForm {
     })                        
   }
 
+  send(val:any){
+    this.loginEvent.emit(val);  
+  }
+
   onLoginSubmit() {
     this.myservice.login(this.loginModel).subscribe(data =>{
       this.userlogin = data.result;
       console.log(data);
-      sessionStorage.setItem('number', this.userlogin.phoneNumber);
       alert(data.response);
-      this.router.navigate(['/dashboard']);
+      if(data.response =="Login Successfully !!")
+      {
+        this.send(true);
+        sessionStorage.setItem("isloggedin", "true");
+        sessionStorage.setItem('number', this.userlogin.phoneNumber);
+        this.router.navigate(['/dashboard']);
+      }
+      else
+      {
+        this.send(false);
+      }
     });
   }
   switchMode() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SignupForm } from './signup-form/signup-form';
 import { AddMoney } from './add-money/add-money';
@@ -11,12 +11,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   protected title = 'Innotm';
+  isloggedIn: boolean = false;
   constructor(private router: Router) {}
 
-  showSidebar(): boolean {
-    // Hide sidebar on login or signup pages
-    return !['', '/login', '/signup'].includes(this.router.url);
+  ngOnInit(): void {
+    // Check if user is logged in
+    this.isloggedIn = Boolean(sessionStorage.getItem("isloggedin"));
+  }
+
+  // showSidebar(): boolean {
+  //   // Hide sidebar on login or signup pages
+  //   return !['', '/login', '/signup'].includes(this.router.url);
+  // }
+  
+  received(event : any){
+    this.isloggedIn = event;
   }
 }

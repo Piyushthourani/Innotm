@@ -1,30 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Myservice, TransactionDetails } from '../myservice';
 
 @Component({
   selector: 'app-transaction-history',
   imports: [CommonModule],
+  providers: [Myservice],
   templateUrl: './transaction-history.html',
   styleUrl: './transaction-history.css'
 })
 export class TransactionHistory implements OnInit {
-    transactions: any[] = [];
+    transactions = new Array<TransactionDetails>();
+    userNumber: any;
+
+    constructor(private myservice: Myservice) {}
 
   ngOnInit() {
-    // Replace this with real API call
-    this.transactions = [
-      {
-        date: new Date(),
-        type: 'credit',
-        amount: 500,
-        counterparty: '9876543210'
-      },
-      {
-        date: new Date(),
-        type: 'debit',
-        amount: 200,
-        counterparty: '1234567890'
-      }
-    ];
+    this.userNumber = sessionStorage.getItem('number');
+    this.fetchTransactionHistory();
+  }
+
+  fetchTransactionHistory() {
+    this.myservice.getTransactionHistory(this.userNumber).subscribe(data => {
+      this.transactions = data.result;
+      console.log(data.response);
+      console.log(data.result);
+    });
   }
 }

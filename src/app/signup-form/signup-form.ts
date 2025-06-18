@@ -66,5 +66,6 @@ export class SignupForm implements OnInit {
   }
   switchMode() {
     this.showLoginForm = !this.showLoginForm;
+    this.router.navigate(['/signup']);
   }
 }

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SignupForm, RouterLink, AddMoney, Sidebar, CommonModule],
+  imports: [RouterOutlet, SignupForm, RouterLink, Sidebar, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -28,5 +28,8 @@ export class App implements OnInit {
   
   received(event : any){
     this.isloggedIn = event;
+    if(!event) {
+      this.router.navigate(['/login']);
+    }
   }
 }

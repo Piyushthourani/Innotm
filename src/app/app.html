@@ -6,7 +6,7 @@
  <app-signup-form *ngIf="!isloggedIn" (loginEvent)="received($event)" />
 <div *ngIf="isloggedIn" class="d-flex">
   
-  <app-sidebar />
+  <app-sidebar *ngIf="isloggedIn"  (loginEvent)="received($event)"/>
 
   
   <div class="flex-grow-1 p-4" style="margin-left: 220px; padding: 20px;">

@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Myservice, TransactionDetails } from '../myservice';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-transaction-history',
-  imports: [CommonModule],
+  imports: [CommonModule, TableModule],
   providers: [Myservice],
   templateUrl: './transaction-history.html',
   styleUrl: './transaction-history.css'

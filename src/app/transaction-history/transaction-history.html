@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <div class="card p-4 shadow">
     <h3 class="text-center text-primary mb-4">Transaction History</h3>
 
@@ -43,5 +43,43 @@
       <p class="text-center text-muted">No transactions found.</p>
     </ng-template>
   </div>
-</div>
+</div> -->
+
+<p-table
+    [value]="transactions"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'min-width': '50rem', 'background-color': '#f8f9fa !important' }"
+    [rowsPerPageOptions]="[5, 10, 20]"
+>
+    <ng-template #header>
+        <tr>
+          <th>Transaction ID</th>
+          <th>User ID</th>
+          <th>Receiver ID</th>
+          <th>Receiver name</th>
+          <th>Receiver number</th>
+          <th>Transaction Type</th>
+          <th>Transaction Date</th>
+          <th>Initial balance</th>
+          <th>Transfer Amount</th>
+          <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-txn>
+        <tr>
+            <td>{{ txn.transactionId }}</td>
+          <td>{{ txn.userId }}</td>
+          <td>{{ txn.receiverId }}</td>
+          <td>{{ txn.receiverName }}</td>
+          <td>{{ txn.receiverPhoneNumber }}</td>
+          <td>{{ txn.transactionType | titlecase }}</td>
+          <td>{{ txn.transactionDate }}</td>
+          <td>{{ txn.initialAmount }}</td>
+          <td>{{ txn.transferAmount }}</td>
+          <td><button class="btn btn-sm btn-danger" (click)="deleteTransaction(txn.transactionId)">Delete</button></td>
+        </tr>
+    </ng-template>
+</p-table>
+
 

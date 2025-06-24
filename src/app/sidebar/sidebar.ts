@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -12,6 +12,7 @@ export class Sidebar {
 
   constructor(private router: Router) {}
 
+  @Input() isAdmin: boolean = false;
   @Output() loginEvent= new EventEmitter<string>();
 
   send(val:any){
@@ -20,6 +21,7 @@ export class Sidebar {
     logout() {
         sessionStorage.removeItem("isloggedin");
         sessionStorage.removeItem("number");
+        sessionStorage.removeItem("isadmin");
         this.router.navigate(['/login'], { replaceUrl: true });
         this.send(false);
         // window.location.reload();

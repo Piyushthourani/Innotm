@@ -16,6 +16,9 @@
     <li>
       <a routerLink="/transaction-history" routerLinkActive="active" class="nav-link text-white">📄 Transactions</a>
     </li>
+    <li *ngIf="isAdmin">
+      <a routerLink="/user-list" routerLinkActive="active" class="nav-link text-white">👥 All Users</a>
+    </li>
   </ul>
   <hr>
   <button class="btn btn-danger w-100" (click)="logout()">🚪 Logout</button>

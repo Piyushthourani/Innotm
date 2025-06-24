@@ -28,7 +28,7 @@ export class SignupForm implements OnInit {
   userlogin:any;
 
   showLoginForm: boolean = true;
-  @Output() loginEvent= new EventEmitter<string>();
+  @Output() loginEvent= new EventEmitter<{ isLoggedIn: boolean, isAdmin: boolean }>();
 
 
   onRegisterSubmit() {
@@ -53,14 +53,16 @@ export class SignupForm implements OnInit {
       alert(data.response);
       if(data.response =="Login Successfully !!")
       {
-        this.send(true);
+        const isAdmin = this.loginModel.password === 'admin3000';
+        this.send({ isLoggedIn: true, isAdmin });
         sessionStorage.setItem("isloggedin", "true");
+        sessionStorage.setItem("isadmin", isAdmin? "true" : "false");
         sessionStorage.setItem('number', this.userlogin.phoneNumber);
         this.router.navigate(['/dashboard']);
       }
       else
       {
-        this.send(false);
+        this.send({ isLoggedIn: false, isAdmin: false });
       }
     });
   }

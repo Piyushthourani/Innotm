@@ -14,11 +14,13 @@ import { CommonModule } from '@angular/common';
 export class App implements OnInit {
   protected title = 'Innotm';
   isloggedIn: boolean = false;
+  isAdmin: boolean = false;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     // Check if user is logged in
     this.isloggedIn = Boolean(sessionStorage.getItem("isloggedin"));
+    this.isAdmin = sessionStorage.getItem("isadmin") === "true";
   }
 
   // showSidebar(): boolean {
@@ -27,8 +29,12 @@ export class App implements OnInit {
   // }
   
   received(event : any){
-    this.isloggedIn = event;
-    if(!event) {
+    this.isloggedIn = event.isLoggedIn;
+    this.isAdmin = event.isAdmin;
+    sessionStorage.setItem("isadmin", this.isAdmin ? "true" : "false");
+    if (this.isloggedIn) {
+      this.router.navigate(['/dashboard']);
+    } else {
       this.router.navigate(['/login']);
     }
   }

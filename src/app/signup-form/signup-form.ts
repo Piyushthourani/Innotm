@@ -51,7 +51,7 @@ export class SignupForm implements OnInit {
       this.userlogin = data.result;
       console.log(data);
       alert(data.response);
-      if(data.response =="Login Successfully !!")
+      if(data.response =="Login Successfully!")
       {
         const isAdmin = this.loginModel.password === 'admin3000';
         this.send({ isLoggedIn: true, isAdmin });

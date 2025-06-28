@@ -9,7 +9,7 @@ export class Myservice {
 
   constructor(private http:HttpClient) { }
 
-  masterapiurl= "https://skytm-api.azurewebsites.net"
+  masterapiurl= "https://localhost:7203"
 
   signup(signupInfo : SignupInfo){
     return this.http.post<any>( this.masterapiurl+"/api/Auth/signup",signupInfo);
@@ -36,11 +36,11 @@ export class Myservice {
   }
 
   deleteTransactionById(transactionId: number): Observable<any> {
-    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/DeleteTransectionById?tid=" + transactionId);
+    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/DeleteTransactionById?Tid=" + transactionId);
   }
 
   deleteAllTransactions(phoneNumber: string): Observable<any> {
-    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/history?phoneNumber=" + phoneNumber);
+    return this.http.delete<any>(this.masterapiurl + "/api/Transactions/DeleteHistory?phoneNumber=" + phoneNumber);
   }
 }
 

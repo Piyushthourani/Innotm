@@ -4,10 +4,11 @@ import { SignupForm } from './signup-form/signup-form';
 import { AddMoney } from './add-money/add-money';
 import { Sidebar } from './sidebar/sidebar';
 import { CommonModule } from '@angular/common';
+import { Chat } from './chat/chat';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SignupForm, RouterLink, Sidebar, CommonModule],
+  imports: [RouterOutlet, SignupForm, RouterLink, Sidebar, CommonModule, Chat],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

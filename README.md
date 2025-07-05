@@ -1,59 +1,89 @@
-# Innotm
+# Innotm – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+Innotm is a responsive Angular-based frontend for a digital payment wallet. It allows users to log in, check balances, add money, transfer funds, and view transaction history by connecting with the ASP.NET Core backend APIs.
 
-## Development server
+🔗 **Backend Repo:** [Innotm-API-project](https://github.com/Piyushthourani/Innotm-API-project)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 🚀 Features
+
+- 🔐 Signup and login forms
+- 💼 Dashboard with wallet balance
+- ➕ Add money to wallet
+- 💸 Send money to other users
+- 📜 Transaction history
+- 👥 User list display
+- 🧭 Sidebar navigation
+- 📱 Fully responsive design using Bootstrap
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Angular
+- **Languages**: TypeScript, HTML, CSS
+- **Routing**: Angular Router (`app.routes.ts`)
+- **API Handling**: Angular `HttpClient`
+- **IDE**: Visual Studio Code / Angular CLI
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│ ├── add-money/
+│ ├── dash-board/
+│ ├── payment/
+│ ├── sidebar/
+│ ├── signup-form/
+│ ├── transaction-history/
+│ └── user-list/
+├── app.css / app.html
+├── app.routes.ts
+├── app.ts / app.spec.ts
+├── myservice.ts / myservice.spec.ts
+├── index.html
+└── main.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🧪 Setup Instructions
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Piyushthourani/Innotm
+   cd Innotm
+   ```
 
-```bash
-ng generate component component-name
-```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Update API URL:
+   In `myservice.ts` set your backend API base::
+   ```ts
+   apiUrl = 'https://localhost:44377/api'; // Update if deployed
 
-```bash
-ng generate --help
-```
+   ```
 
-## Building
+4. Run the app:
+   ```bash
+   ng serve
+   ```
 
-To build the project run:
+5. Open in browser:
+   ```
+   http://localhost:4200/
+   ```
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 📜 License
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT License  
+© 2025 [Piyush Thourani](https://github.com/Piyushthourani)

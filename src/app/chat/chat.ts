@@ -21,6 +21,7 @@ export class Chat implements OnInit {
   isOpen = false;
   userPhonenumber: string | null = '';
   isListening: boolean = false;
+  lastQuestion: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -30,26 +31,48 @@ export class Chat implements OnInit {
 
   toggleChat(): void {
     this.isOpen = !this.isOpen;
-    this.error = '';
-    this.reply = '';
-    this.question = '';
+    if (!this.isOpen) {
+      this.error = '';
+      this.reply = '';
+      this.question = '';
+    }
+  }
+
+  setQuestionFromChip(chipText: string): void {
+    this.question = chipText;
+    this.askQuestion();
+  }
+
+  handleEnterKey(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      if (this.question.trim() && !this.loading) {
+        this.askQuestion();
+      }
+    }
+  }
+
+  getTimeStamp(): string {
+    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
   askQuestion(): void {
-    if (!this.question || !this.userPhonenumber) {
+    if (!this.question.trim() || !this.userPhonenumber) {
       this.error = 'Please enter your question and make sure you are logged in.';
       return;
     }
 
     this.loading = true;
     this.error = '';
-    this.reply = '';
+    this.lastQuestion = this.question;
+    const currentQuestion = this.question;
+    this.question = '';
 
     const params = new HttpParams()
       .set('phoneNumber', this.userPhonenumber)
-      .set('question', this.question);
+      .set('question', currentQuestion);
 
-    this.http.get<{ reply: string }>('https://localhost:7203/ask', { params })
+    this.http.get<{ reply: string }>('https://localhost:7203/api/Chat/ask', { params })
       .subscribe({
         next: res => {
           this.reply = res.reply;

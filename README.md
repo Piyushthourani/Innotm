@@ -13,9 +13,9 @@ Innotm is a responsive Angular-based frontend for a digital payment wallet. It a
 - ➕ Add money to wallet
 - 💸 Send money to other users
 - 📜 Transaction history
-- 👥 User list display
 - 🧭 Sidebar navigation
 - 📱 Fully responsive design using Bootstrap
+- 💬 AI chat feature to do transactions
 
 ---
 
@@ -35,6 +35,7 @@ Innotm is a responsive Angular-based frontend for a digital payment wallet. It a
 src/
 ├── app/
 │ ├── add-money/
+│ ├── chat/
 │ ├── dash-board/
 │ ├── payment/
 │ ├── sidebar/

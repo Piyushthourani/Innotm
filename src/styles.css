@@ -1,9 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles for glassmorphic wallet theme */
 
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-body {
-  background-color: #f4f7fa;
+/* Global reset and theme */
+* {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #764ba2 75%, #667eea 100%);
+  background-size: 400% 400%;
+  animation: globalGradientShift 15s ease infinite;
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes globalGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ensure app root takes full height */
+app-root {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Override any Bootstrap defaults that might conflict */
+.container-fluid {
+  padding: 0;
+}
+
+/* Custom scrollbar for the theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

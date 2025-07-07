@@ -1,23 +1,136 @@
 
-<div class="container mt-5">
-  <div class="card shadow-sm p-4">
-    <h3 class="mb-4 text-primary text-center">Transfer Money</h3>
+<div class="payment-container">
+  <!-- Background Decoration -->
+  <div class="background-decoration">
+    <div class="decoration-circle-1"></div>
+    <div class="decoration-circle-2"></div>
+  </div>
 
-    <div class="card-body">
-  <div class="input-group mb-3">
- <label for="users" class="select-label">Select user:</label>
- <select id="users" class="custom-select" [(ngModel)]="transferMoneyModel.receiverPhoneNumber">
-   <option value="" disabled selected>Select user</option>
-   <option *ngFor="let user of userlist" [value]="user.phoneNumber">{{ user.username }} | {{user.phoneNumber}}</option>
- </select>
- </div>
- <div class="input-group mb-3">
-  <span class="input-group-text">Amount:</span>
-  <input type="number" class="form-control" [(ngModel)]="transferMoneyModel.amount" min="1" aria-label="Amount (to the nearest INR)" required>
-  <span class="input-group-text">.00</span>
-</div>
-<button type="submit" class="btn btn-primary" (click)="sendMoney()" [disabled]="!transferMoneyModel.receiverPhoneNumber || !transferMoneyModel.amount">Send Money</button>
- </div>
+  <!-- Main Content Wrapper -->
+  <div class="d-flex align-items-center justify-content-center flex-grow-1">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-xl-5">
+          <!-- Header Section -->
+          <div class="card border-0 shadow-lg mb-4 header-card">
+            <div class="card-body p-4 text-center">
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <div class="icon-container me-3">
+                  <div class="transfer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="text-start">
+                  <h2 class="h3 mb-1 fw-bold text-white">Transfer Money</h2>
+                  <p class="mb-0 text-white-50">Send money instantly to any user</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transfer Money Form -->
+          <div class="card border-0 shadow-lg form-card">
+            <div class="card-body p-4">
+              <form>
+                <!-- User Selection Section -->
+                <div class="mb-4">
+                  <label for="users" class="form-label d-flex align-items-center mb-3 text-white fw-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                      <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002A.274.274 0 0 1 15 13H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                    </svg>
+                    Select Recipient
+                  </label>
+                  
+                  <select 
+                    id="users" 
+                    class="form-select form-select-lg user-select" 
+                    [(ngModel)]="transferMoneyModel.receiverPhoneNumber"
+                    name="recipient"
+                  >
+                    <option value="" disabled selected>Choose a user to transfer money</option>
+                    <option *ngFor="let user of userlist" [value]="user.phoneNumber">
+                      {{ user.username }} • {{ user.phoneNumber }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- Amount Input Section -->
+                <div class="mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <label for="amount" class="form-label d-flex align-items-center mb-0 text-white fw-semibold">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                        <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                      </svg>
+                      Transfer Amount
+                    </label>
+                    <span class="badge bg-light text-dark px-3 py-2">INR</span>
+                  </div>
+                  
+                  <div class="input-group mb-3 amount-input-group">
+                    <span class="input-group-text bg-transparent border-end-0 text-white currency-symbol">₹</span>
+                    <input
+                      type="number"
+                      id="amount"
+                      name="amount"
+                      class="form-control form-control-lg border-start-0 border-end-0 amount-input"
+                      [(ngModel)]="transferMoneyModel.amount"
+                      min="1"
+                      step="1"
+                      placeholder="0"
+                      required
+                    />
+                    <span class="input-group-text bg-transparent border-start-0 text-white-50">.00</span>
+                  </div>
+                </div>
+
+                <!-- Quick Amount Selection -->
+                <div class="mb-4">
+                  <p class="fw-semibold text-white mb-3">Quick amounts</p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-outline-light flex-fill" (click)="setQuickAmount(100)">₹100</button>
+                    <button type="button" class="btn btn-outline-light flex-fill" (click)="setQuickAmount(500)">₹500</button>
+                    <button type="button" class="btn btn-outline-light flex-fill" (click)="setQuickAmount(1000)">₹1,000</button>
+                    <button type="button" class="btn btn-outline-light flex-fill" (click)="setQuickAmount(2000)">₹2,000</button>
+                  </div>
+                </div>
+
+                <!-- Transfer Info -->
+                <div class="alert alert-info d-flex align-items-center mb-4 transfer-info-alert">
+                  <div class="me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h6 class="alert-heading mb-1">Instant Transfer</h6>
+                    <p class="mb-0">Money will be transferred instantly to the recipient's wallet</p>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                  <button 
+                    type="button" 
+                    class="btn btn-primary btn-lg py-3 transfer-btn" 
+                    (click)="sendMoney()"
+                    [disabled]="!transferMoneyModel.receiverPhoneNumber || !transferMoneyModel.amount"
+                  >
+                    <div class="d-flex align-items-center justify-content-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                        <path d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                      </svg>
+                      <span class="fw-bold">Send Money</span>
+                    </div>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
  

@@ -1,79 +1,252 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 450px;">
-      <h3 class="text-center mb-4">{{ showLoginForm ? 'Login' : 'Sign Up' }}</h3>
+<div class="auth-container">
+  <!-- Background Decoration -->
+  <div class="background-decoration">
+    <div class="decoration-circle-1"></div>
+    <div class="decoration-circle-2"></div>
+    <div class="decoration-circle-3"></div>
+  </div>
 
-      <form *ngIf="!showLoginForm" #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onRegisterSubmit()">
-        <!-- Email -->
-        <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" [(ngModel)]="signupModel.email" name="Email" #email="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && email.invalid}"  placeholder="Enter your email" required>
-        </div>
+  <!-- Main Content Wrapper -->
+  <div class="d-flex align-items-center justify-content-center min-vh-100">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+          
+          <!-- Auth Card -->
+          <div class="auth-card">
+            <div class="auth-card-body">
+              
+              <!-- Header Section -->
+              <div class="auth-header">
+                <div class="auth-logo">
+                  <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                      <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                    </svg>
+                  </div>
+                </div>
+                <h2 class="auth-title">{{ showLoginForm ? 'Welcome Back' : 'Create Account' }}</h2>
+                <p class="auth-subtitle">{{ showLoginForm ? 'Sign in to your wallet account' : 'Join our secure digital wallet platform' }}</p>
+              </div>
 
-        <!-- Phone Number -->
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone Number</label>
-          <input type="text" class="form-control" [(ngModel)]="signupModel.phoneNumber" name="Phone" #phone="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && phone.invalid}"  placeholder="Enter your phone number" required>
-        </div>
+              <!-- Sign Up Form -->
+              <form *ngIf="!showLoginForm" #signupForm="ngForm" (ngSubmit)="signupForm.form.valid && onRegisterSubmit()" class="auth-form">
+                
+                <!-- Email Field -->
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                    </svg>
+                    Email Address
+                  </label>
+                  <input 
+                    type="email" 
+                    id="email"
+                    class="form-control modern-input" 
+                    [(ngModel)]="signupModel.email" 
+                    name="Email" 
+                    #email="ngModel" 
+                    [ngClass]="{ 'is-invalid': signupForm.submitted && email.invalid }" 
+                    placeholder="Enter your email address" 
+                    required
+                  />
+                </div>
 
-        <!-- Gender -->
-        <div class="mb-3">
-          <label class="form-label">Gender</label>
-          <div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" [(ngModel)]="signupModel.gender" name="Gender" #gender="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && gender.invalid}"  value="male" required>
-              <label class="form-check-label" for="male">Male</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" [(ngModel)]="signupModel.gender" name="Gender" #gender="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && gender.invalid}"  value="female" required>
-              <label class="form-check-label" for="female">Female</label>
+                <!-- Phone Number Field -->
+                <div class="form-group">
+                  <label for="phone" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                    </svg>
+                    Phone Number
+                  </label>
+                  <input 
+                    type="text" 
+                    id="phone"
+                    class="form-control modern-input" 
+                    [(ngModel)]="signupModel.phoneNumber" 
+                    name="Phone" 
+                    #phone="ngModel" 
+                    [ngClass]="{ 'is-invalid': signupForm.submitted && phone.invalid }" 
+                    placeholder="Enter your phone number" 
+                    required
+                  />
+                </div>
+
+                <!-- Gender Selection -->
+                <div class="form-group">
+                  <label class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    Gender
+                  </label>
+                  <div class="gender-options">
+                    <div class="form-check-custom">
+                      <input 
+                        class="form-check-input-custom" 
+                        type="radio" 
+                        [(ngModel)]="signupModel.gender" 
+                        name="Gender" 
+                        #gender="ngModel" 
+                        [ngClass]="{ 'is-invalid': signupForm.submitted && gender.invalid }" 
+                        value="male" 
+                        id="male"
+                        required
+                      />
+                      <label class="form-check-label-custom" for="male">
+                        <span class="radio-icon">♂</span>
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check-custom">
+                      <input 
+                        class="form-check-input-custom" 
+                        type="radio" 
+                        [(ngModel)]="signupModel.gender" 
+                        name="Gender" 
+                        value="female" 
+                        id="female"
+                        required
+                      />
+                      <label class="form-check-label-custom" for="female">
+                        <span class="radio-icon">♀</span>
+                        Female
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Username Field -->
+                <div class="form-group">
+                  <label for="username" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>
+                    Username
+                  </label>
+                  <input 
+                    type="text" 
+                    id="username"
+                    class="form-control modern-input" 
+                    [(ngModel)]="signupModel.username" 
+                    name="Username" 
+                    #username="ngModel" 
+                    [ngClass]="{ 'is-invalid': signupForm.submitted && username.invalid }" 
+                    placeholder="Choose a username" 
+                    required
+                  />
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                  <label for="password" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                    Password
+                  </label>
+                  <input 
+                    type="password" 
+                    id="password"
+                    class="form-control modern-input" 
+                    [(ngModel)]="signupModel.password" 
+                    name="Password" 
+                    #password="ngModel" 
+                    [ngClass]="{ 'is-invalid': signupForm.submitted && password.invalid }" 
+                    placeholder="Create a secure password" 
+                    required
+                  />
+                </div>
+
+                <!-- Register Button -->
+                <div class="form-group">
+                  <button type="submit" class="btn auth-btn auth-btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="btn-icon">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg>
+                    Create Account
+                  </button>
+                </div>
+
+                <!-- Switch to Login -->
+                <div class="auth-switch">
+                  <span class="switch-text">Already have an account?</span>
+                  <a class="switch-link" (click)="switchMode()">Sign In</a>
+                </div>
+              </form>
+
+              <!-- Login Form -->
+              <form *ngIf="showLoginForm" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onLoginSubmit()" class="auth-form">
+                
+                <!-- Phone Number Field -->
+                <div class="form-group">
+                  <label for="loginPhone" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                    </svg>
+                    Phone Number
+                  </label>
+                  <input 
+                    type="text" 
+                    id="loginPhone"
+                    class="form-control modern-input" 
+                    [(ngModel)]="loginModel.phoneNumber" 
+                    name="Phone" 
+                    #phone="ngModel" 
+                    [ngClass]="{ 'is-invalid': loginForm.submitted && phone.invalid }" 
+                    placeholder="Enter your phone number" 
+                    required
+                  />
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                  <label for="loginPassword" class="form-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="label-icon">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                    Password
+                  </label>
+                  <input 
+                    type="password" 
+                    id="loginPassword"
+                    class="form-control modern-input" 
+                    [(ngModel)]="loginModel.password" 
+                    name="Password" 
+                    #password="ngModel" 
+                    [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }" 
+                    placeholder="Enter your password" 
+                    required
+                  />
+                </div>
+
+                <!-- Login Button -->
+                <div class="form-group">
+                  <button type="submit" class="btn auth-btn auth-btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="btn-icon">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7.068 5.09c1.651-1.018 3.865-1.4 5.23-.387.196.145.362.308.469.458.107.15.111.2.111.2v.054a4.255 4.255 0 0 0-.97-.153 2.35 2.35 0 0 0-.17-.004c-.93 0-1.681.509-1.983 1.237-.751-.124-1.514.068-2.123.793-.44.526-.6 1.179-.225 1.771a9.47 9.47 0 0 0-.8.085 2.671 2.671 0 0 1-.045-.141 2.93 2.93 0 0 1-.1-.25A4.13 4.13 0 0 1 6.9 6.482a2.670 2.670 0 0 1 .168-1.392z"/>
+                    </svg>
+                    Sign In
+                  </button>
+                </div>
+
+                <!-- Switch to Register -->
+                <div class="auth-switch">
+                  <span class="switch-text">Need an account?</span>
+                  <a class="switch-link" (click)="switchMode()">Sign Up</a>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>
-
-        <!-- Username -->
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" [(ngModel)]="signupModel.username" name="Username" #username="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && username.invalid}"  placeholder="Choose a username" required>
-        </div>
-
-        <!-- Password -->
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="signupModel.password" name="Password" #password="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && password.invalid}" placeholder="Create a password"  required>
-        </div>
-
-        <!-- Register Button -->
-        <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-      </form>
-    
-
-
-  <!-- Login Form  -->
-
-  
-    <form *ngIf="showLoginForm" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onLoginSubmit()">
-      <!-- Phone Number -->
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone Number</label>
-        <input type="text" class="form-control" [(ngModel)]="loginModel.phoneNumber" name="Phone" #phone="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && phone.invalid}" placeholder="Enter phone number" required>
       </div>
-
-      <!-- Password -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" [(ngModel)]="loginModel.password" name="Password" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid}" placeholder="Enter password" required>
-      </div>
-
-      <!-- Login Button -->
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-      <p class="text-center mt-3">Need an account?<a class="text-primary" (click)="switchMode()">
-        Sign Up
-      </a></p>
-    </form>
+    </div>
   </div>
 </div>
 

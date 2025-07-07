@@ -1,17 +1,15 @@
 
-<!-- <app-signup-form /> -->
-<!-- <app-add-money /> -->
-
 <!-- app.component.html -->
- <app-signup-form *ngIf="!isloggedIn" (loginEvent)="received($event)" />
-<div *ngIf="isloggedIn" class="d-flex">
+<div class="app-container">
+  <app-signup-form *ngIf="!isloggedIn" (loginEvent)="received($event)" />
   
-  <app-sidebar *ngIf="isloggedIn" [isAdmin]="isAdmin" (loginEvent)="received($event)"/>
-
-  
-  <div class="flex-grow-1 p-4" style="margin-left: 220px; padding: 20px;">
-    <router-outlet />
-    <app-chat/>
+  <div *ngIf="isloggedIn" class="main-layout">
+    <app-sidebar *ngIf="isloggedIn" [isAdmin]="isAdmin" (loginEvent)="received($event)"/>
+    
+    <div class="content-area">
+      <router-outlet />
+      <app-chat/>
+    </div>
   </div>
 </div>
 

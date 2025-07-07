@@ -1,4 +1,170 @@
-.card {
-  max-width: 400px;
-  margin: auto;
+/* Simplified Add Money Component - Bootstrap First */
+.add-money-container {
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #764ba2 75%, #667eea 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Background Decorations - Minimal */
+.background-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decoration-circle-1 {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatAnimation 8s ease-in-out infinite;
+}
+
+.decoration-circle-2 {
+  position: absolute;
+  bottom: 20%;
+  left: 15%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatAnimation 10s ease-in-out infinite reverse;
+}
+
+@keyframes floatAnimation {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+/* Enhanced Bootstrap Components */
+.header-card {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.icon-container {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);
+}
+
+.money-icon {
+  color: #667eea;
+}
+
+/* Enhanced Input Group */
+.amount-input-group .input-group-text {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.amount-input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+
+.amount-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.amount-input:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+/* Enhanced Buttons */
+.btn-outline-light {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Alert */
+.payment-info-alert {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  color: #ffffff !important;
+}
+
+/* Enhanced Submit Button */
+.add-money-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.add-money-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4) !important;
+}
+
+.add-money-btn:disabled {
+  opacity: 0.5;
+  transform: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .add-money-container {
+    padding: 20px;
+  }
+  
+  .amount-input,
+  .amount-input-group .input-group-text {
+    font-size: 1.25rem !important;
+  }
+  
+  .btn-outline-light {
+    font-size: 0.875rem;
+  }
 }

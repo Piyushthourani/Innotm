@@ -1,31 +1,123 @@
 
 
-<div class="container mt-5">
-  <div class="card p-4 shadow">
-    <h2 class="text-center text-primary mb-4">Welcome to Innotm</h2>
-
-    <div class="text-center mb-4">
-      <h4>Your Current Balance:</h4>
-      <p class="h3 text-success">₹ {{ balance }}</p>
+<div class="wallet-dashboard">
+  <!-- Header Section -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="welcome-section">
+        <h1 class="welcome-title">Welcome back! 👋</h1>
+        <p class="welcome-subtitle">Your financial overview</p>
+      </div>
+      <div class="profile-section">
+        <div class="profile-avatar">
+          <div class="avatar-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <p class="text-center">What would you like to do today?</p>
+  <!-- Balance Card -->
+  <div class="balance-section">
+    <div class="balance-card">
+      <div class="balance-card-bg"></div>
+      <div class="balance-content">
+        <div class="balance-header">
+          <span class="balance-label">Total Balance</span>
+          <div class="balance-actions">
+            <button class="balance-action-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="balance-amount">
+          <span class="currency">₹</span>
+          <span class="amount">{{ balance }}</span>
+        </div>
+        <div class="balance-trend">
+          <span class="trend-indicator positive">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+            +2.4%
+          </span>
+          <span class="trend-text">from last month</span>
+        </div>
+      </div>
+      <div class="balance-decoration">
+        <div class="decoration-circle-1"></div>
+        <div class="decoration-circle-2"></div>
+        <div class="decoration-circle-3"></div>
+      </div>
+    </div>
+  </div>
 
-    <div class="row text-center mt-4">
-      <div class="col-md-4 mb-3">
-        <button class="btn btn-outline-success w-100" (click)="addMoney()">
-          ➕ Add Money
-        </button>
+  <!-- Quick Actions -->
+  <div class="quick-actions-section">
+    <h3 class="section-title">Quick Actions</h3>
+    <div class="actions-grid">
+      <div class="action-card add-money" (click)="addMoney()">
+        <div class="action-icon">
+          <div class="icon-bg add-money-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="action-content">
+          <h4 class="action-title">Add Money</h4>
+          <p class="action-subtitle">Top up your wallet</p>
+        </div>
+        <div class="action-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <button class="btn btn-outline-primary w-100" (click)="transferMoney()">
-          💸 Transfer Money
-        </button>
+
+      <div class="action-card transfer-money" (click)="transferMoney()">
+        <div class="action-icon">
+          <div class="icon-bg transfer-money-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="action-content">
+          <h4 class="action-title">Transfer Money</h4>
+          <p class="action-subtitle">Send to friends & family</p>
+        </div>
+        <div class="action-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <button class="btn btn-outline-secondary w-100" (click)="viewTransactionHistory()">
-          📄 Transaction History
-        </button>
+
+      <div class="action-card transaction-history" (click)="viewTransactionHistory()">
+        <div class="action-icon">
+          <div class="icon-bg transaction-history-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="action-content">
+          <h4 class="action-title">Transaction History</h4>
+          <p class="action-subtitle">View all transactions</p>
+        </div>
+        <div class="action-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </div>
       </div>
     </div>
   </div>

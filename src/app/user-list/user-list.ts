@@ -16,4 +16,8 @@ export class UserList {
       this.users = data.result;
     });
   }
+
+  trackByUserId(index: number, user: any): any {
+    return user.userId;
+  }
 }

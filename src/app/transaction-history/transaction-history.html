@@ -1,55 +1,132 @@
- <div class="container mt-5">
-  <div class="card p-4 shadow">
-    <h3 class="text-center text-primary mb-4">Transaction History</h3>
-
-    <div class="text-end mb-3">
-      <button class="btn btn-danger btn-sm" (click)="deleteAllTransactions()">
-        🗑️ Delete All Transactions
-      </button>
-    </div>
-
-    <p-table
-    [value]="transactions"
-    [paginator]="true"
-    [rows]="5"
-    [tableStyle]="{ 'min-width': '50rem', 'background-color': '#f8f9fa !important' }"
-    [rowsPerPageOptions]="[5, 10, 20]"
->
-    <ng-template #header>
-        <tr>
-          <th>Transaction ID</th>
-          <th>User ID</th>
-          <th>Receiver ID</th>
-          <th>Receiver name</th>
-          <th>Receiver number</th>
-          <th>Transaction Type</th>
-          <th>Transaction Date</th>
-          <th>Initial balance</th>
-          <th>Transfer Amount</th>
-          <th>Actions</th>
-        </tr>
-    </ng-template>
-    <ng-template #body let-txn>
-        <tr>
-            <td>{{ txn.transactionId }}</td>
-          <td>{{ txn.userId }}</td>
-          <td>{{ txn.receiverId }}</td>
-          <td>{{ txn.receiverName }}</td>
-          <td>{{ txn.receiverPhoneNumber }}</td>
-          <td>{{ txn.transactionType | titlecase }}</td>
-          <td>{{ txn.transactionDate }}</td>
-          <td>{{ txn.initialAmount }}</td>
-          <td>{{ txn.transferAmount }}</td>
-          <td><button class="btn btn-sm btn-danger" (click)="deleteTransaction(txn.transactionId)">Delete</button></td>
-        </tr>
-    </ng-template>
-</p-table>
-
-    <ng-template #noData>
-      <p class="text-center text-muted">No transactions found.</p>
-    </ng-template>
+<div class="transaction-container">
+  <!-- Background Decoration -->
+  <div class="background-decoration">
+    <div class="decoration-circle-1"></div>
+    <div class="decoration-circle-2"></div>
   </div>
-</div> 
+
+  <!-- Main Content Wrapper -->
+  <div class="d-flex align-items-start justify-content-center pt-4">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-11">
+          <!-- Header Section -->
+          <div class="card border-0 shadow-lg mb-4 header-card">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="icon-container me-3">
+                    <div class="history-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h2 class="h3 mb-1 fw-bold text-white">Transaction History</h2>
+                    <p class="mb-0 text-white-50">View and manage your transaction records</p>
+                  </div>
+                </div>
+                <button class="btn btn-outline-danger btn-sm glassmorphic-btn" (click)="deleteAllTransactions()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                  </svg>
+                  Clear All
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Section -->
+          <div class="card border-0 shadow-lg table-card">
+            <div class="card-body p-4">
+
+              <p-table
+                [value]="transactions"
+                [paginator]="true"
+                [rows]="5"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                [rowsPerPageOptions]="[5, 10, 20]"
+                styleClass="modern-table"
+              >
+                <ng-template #header>
+                  <tr>
+                    <th class="table-header">ID</th>
+                    <th class="table-header">User</th>
+                    <th class="table-header">Receiver</th>
+                    <th class="table-header">Contact</th>
+                    <th class="table-header">Type</th>
+                    <th class="table-header">Date</th>
+                    <th class="table-header">Amount</th>
+                    <th class="table-header">Actions</th>
+                  </tr>
+                </ng-template>
+                <ng-template #body let-txn>
+                  <tr class="table-row">
+                    <td class="table-cell">
+                      <span class="transaction-id">#{{txn.transactionId}}</span>
+                    </td>
+                    <td class="table-cell">{{txn.userId}}</td>
+                    <td class="table-cell">
+                      <div class="user-info">
+                        <div class="user-avatar">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <div class="fw-semibold">{{txn.receiverName}}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="table-cell">
+                      <span class="phone-number">{{txn.receiverPhoneNumber}}</span>
+                    </td>
+                    <td class="table-cell">
+                      <span class="badge transaction-type" [ngClass]="'type-' + txn.transactionType.toLowerCase()">
+                        {{txn.transactionType | titlecase}}
+                      </span>
+                    </td>
+                    <td class="table-cell">
+                      <span class="transaction-date">{{txn.transactionDate}}</span>
+                    </td>
+                    <td class="table-cell">
+                      <div class="amount-info">
+                        <div class="transfer-amount">₹{{txn.transferAmount | number:'1.0-0'}}</div>
+                        <small class="initial-amount">Balance: ₹{{txn.initialAmount | number:'1.0-0'}}</small>
+                      </div>
+                    </td>
+                    <td class="table-cell">
+                      <button class="btn btn-outline-danger btn-sm action-btn" (click)="deleteTransaction(txn.transactionId)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+              <ng-template #noData>
+                <div class="text-center py-5">
+                  <div class="empty-state-icon mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16" class="text-white-50">
+                      <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    </svg>
+                  </div>
+                  <h5 class="text-white mb-2">No Transactions Found</h5>
+                  <p class="text-white-50 mb-0">Your transaction history will appear here once you start making transactions.</p>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

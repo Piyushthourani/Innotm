@@ -38,4 +38,8 @@ export class Payment {
       alert(data.response);
     });
   }
+
+  setQuickAmount(amount: number) {
+    this.transferMoneyModel.amount = amount;
+  }
 }

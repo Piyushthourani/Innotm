@@ -20,6 +20,10 @@ export class AddMoney implements OnInit {
     this.userphoneNumber = sessionStorage.getItem('number');
   }
 
+  selectQuickAmount(amount: number) {
+    this.addMoneyModel.amount = amount;
+  }
+
   addMoney() {
     this.addMoneyModel.phoneNumber = this.userphoneNumber;
     this.myservice.addMoney(this.addMoneyModel).subscribe(data => {

@@ -2,7 +2,7 @@
 
 Innotm is a responsive Angular-based frontend for a digital payment wallet. It allows users to log in, check balances, add money, transfer funds, and view transaction history by connecting with the ASP.NET Core backend APIs.
 
-🔗 **Backend Repo:** [Innotm-API-project](https://github.com/Piyushthourani/Innotm-API-project)
+🔗 **Backend Repo:** [Innotm-Backend](https://github.com/Piyushthourani/Innotm-API-project)
 
 ---
 
